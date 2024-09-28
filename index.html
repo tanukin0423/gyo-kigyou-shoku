@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>就職研究ツール</title>
+    <style>
+        :root {
+            --industry-color: #4CAF50;  /* 業界（緑） */
+            --company-color: #8B4513;   /* 企業（茶色） */
+            --occupation-color: #007BFF; /* 職種（ブルー） */
+            --background-color: #f0f8ff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--occupation-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .logo-icon {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .research-buttons {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .research-button {
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem; /* ボタンの大きさを増やす */
+            font-size: 1.5rem; /* フォントサイズを大きく */
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center; /* アイコンとテキストを中央揃え */
+            justify-content: center;
+        }
+        .industry-button {
+            background-color: var(--industry-color);
+        }
+        .company-button {
+            background-color: var(--company-color);
+        }
+        .occupation-button {
+            background-color: var(--occupation-color);
+        }
+        .research-button:hover {
+            opacity: 0.8;
+        }
+        .research-info {
+            margin-top: 2rem;
+        }
+        .research-info h2 {
+            color: var(--occupation-color);
+        }
+        @media (max-width: 768px) {
+            .research-buttons {
+                flex-direction: column;
+            }
+            .research-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🔍</span>
+            就職研究ツール
+        </div>
+        <h1>あなたのキャリアの第一歩をサポート</h1>
+    </header>
+
+    <div class="container">
+        <div class="research-buttons">
+            <a href="業界研究ページver8.html" class="research-button industry-button">
+                業界研究
+                <span>🌱</span> <!-- 業界のロゴ -->
+            </a>
+            <a href="企業研究プロンプトver2.html" class="research-button company-button">
+                企業研究
+                <span>🏢</span> <!-- 企業のロゴ -->
+            </a>
+            <a href="職種研究プロンプトver2.html" class="research-button occupation-button">
+                職種研究
+                <span>🔧</span> <!-- 職種のロゴ -->
+            </a>
+        </div>
+
+        <div class="research-info">
+            <h2>研究の重要性</h2>
+            <p><strong>業界研究：</strong>業界全体の動向や特徴を理解することで、将来性のある分野を見極め、長期的なキャリアプランを立てることができます。</p>
+            <p><strong>企業研究：</strong>企業の文化、価値観、経営方針を知ることで、自分に合った職場環境を見つけ、ミスマッチを防ぐことができます。</p>
+            <p><strong>職種研究：</strong>具体的な仕事内容や必要なスキルを把握することで、自己の適性を見極め、効果的なキャリア選択ができます。</p>
+        </div>
+    </div>
+
+    
+</body>
+</html>

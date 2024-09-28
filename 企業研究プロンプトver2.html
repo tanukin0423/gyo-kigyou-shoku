@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企業研究ページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5e5d5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #653202;
+        }
+        h1 {
+        text-align: center;
+        }
+        .input-section {
+            margin-bottom: 20px;
+        }
+        .research-item {
+            background-color: #f9f3ee;
+            border: 1px solid #e0d5c5;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .research-item h3 {
+            margin-top: 0;
+            color: #6d4c41;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        button {
+            background-color: #6d4c41;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5d4037;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">企業研究プログラム</h1>
+        <p>このページでは、企業について詳しく調査し、理解を深めることができます。各セクションに情報を入力し、最後にダウンロードボタンを押すと、入力した内容をテキストファイルとして保存できます。</p>
+
+        <div class="input-section">
+            <label for="company-name">調べたい企業名：</label>
+            <input type="text" id="company-name" placeholder="企業名を入力してください">
+        </div>
+
+        <div id="research-sections"></div>
+
+        <div class="input-section">
+            <h3>総合的な感想</h3>
+            <textarea id="overall-impression" rows="5" placeholder="企業研究を通じて感じたこと、気づいたことを書いてください。"></textarea>
+        </div>
+
+        <button onclick="downloadResearch()">研究内容をダウンロード</button>
+
+        <div class="button-group">
+            <button onclick="showAIPrompt()">AI検索プロンプトを表示</button>
+            <button onclick="copyAIPrompt()" id="copy-button" style="display: none;">プロンプトをコピー</button>
+        </div>
+
+        <div id="ai-prompt-container">
+            <textarea id="ai-prompt-text" readonly></textarea>
+        </div>
+
+        <div class="warning">
+            <strong>注意：</strong> AIは活用すれば素晴らしい効果を発揮しますが、使い方次第では無意味になる可能性があります。AIを補助ツールとして賢く使い、自分の思考と組み合わせることで、より深い洞察を得ることができます。
+        </div>
+    </div>
+
+    <script>
+        const researchItems = [
+            {
+                title: "企業概要",
+                purpose: "企業の基本情報を理解し、全体像を把握する",
+                points: "設立年、従業員数、資本金、売上高、事業領域",
+                howTo: "企業のウェブサイトの「会社概要」や「企業情報」ページを確認",
+                searchTips: "「[企業名] 会社概要」「[企業名] 企業情報」",
+                aiPrompt: "[企業名]の企業概要について、設立年、従業員数、資本金、売上高、主な事業領域を教えてください。",
+                example1: "[企業名]は19XX年に設立され、従業員数は約X,XXX名、資本金はX億円です。主な事業領域は〇〇と△△で、昨年度の売上高はXXX億円でした。",
+                example2: "創業以来XX年の歴史を持つ[企業名]は、〇〇業界でのリーディングカンパニーです。グローバルに事業を展開し、従業員の半数以上が海外で勤務しています。"
+            },
+            {
+                title: "企業理念",
+                purpose: "企業の価値観や目指す方向性を理解する",
+                points: "ミッション、ビジョン、バリュー、スローガン",
+                howTo: "企業のウェブサイトの「企業理念」や「ミッション・ビジョン」ページを確認",
+                searchTips: "「[企業名] 企業理念」「[企業名] ミッション ビジョン」",
+                aiPrompt: "[企業名]の企業理念、ミッション、ビジョン、バリューについて教えてください。",
+                example1: "[企業名]の企業理念は「〇〇を通じて社会に貢献する」です。ミッションとして「△△の実現」を掲げ、ビジョンには「××な世界をつくる」を設定しています。",
+                example2: "「誠実」「革新」「共創」という3つのバリューを基に、[企業名]は持続可能な社会の実現に向けて事業を展開しています。"
+            },
+            {
+                title: "主な事業内容とその社会的役割と重要性",
+                purpose: "企業の具体的な活動と、それが社会にもたらす影響を理解する",
+                points: "主力製品・サービス、市場シェア、社会課題との関連性",
+                howTo: "企業のウェブサイトの「事業内容」ページや、ニュースリリースを確認",
+                searchTips: "「[企業名] 事業内容」「[企業名] 社会貢献」",
+                aiPrompt: "[企業名]の主な事業内容と、その事業が果たす社会的役割について説明してください。",
+                example1: "[企業名]の主力事業である〇〇は、△△という社会課題の解決に貢献しています。特に××分野では国内シェアX%を占め、重要な役割を果たしています。",
+                example2: "環境技術を活かした□□製品の開発により、[企業名]は持続可能な社会の実現に向けて積極的に取り組んでいます。"
+            },
+            {
+                title: "企業の特徴と強み",
+                purpose: "企業の競争優位性や独自の価値提案を理解する",
+                points: "技術力、ブランド力、人材、特許、顧客基盤",
+                howTo: "企業のウェブサイトの「強み」ページや、アニュアルレポートを確認",
+                searchTips: "「[企業名] 強み」「[企業名] 特徴」",
+                aiPrompt: "[企業名]の特徴と強みについて、具体例を挙げて説明してください。",
+                example1: "[企業名]の最大の強みは、長年培ってきた〇〇技術です。特に△△分野では、XX件の特許を保有し、業界をリードしています。",
+                example2: "グローバルな顧客基盤と、XX万人の従業員によるサービス提供体制が、[企業名]の大きな特徴です。"
+            },
+            {
+                title: "企業の弱みと今後の課題",
+                purpose: "企業が直面している課題や改善点を理解する",
+                points: "市場環境の変化、競合との比較、財務状況",
+                howTo: "企業の決算説明会資料や、業界分析レポートを確認",
+                searchTips: "「[企業名] 課題」「[企業名] SWOT分析」",
+                aiPrompt: "[企業名]が直面している課題や弱みについて、分析してください。",
+                example1: "[企業名]の課題として、〇〇市場での競争激化が挙げられます。特に△△分野での技術革新への対応が遅れている点が弱みとなっています。",
+                example2: "海外展開の遅れが[企業名]の弱みの一つです。今後は××地域での事業拡大が重要な課題となっています。"
+            },
+            {
+                title: "競合企業との比較",
+                purpose: "業界内での位置づけや差別化ポイントを理解する",
+                points: "市場シェア、製品・サービスの特徴、戦略の違い",
+                howTo: "業界レポートや、各社の製品・サービス比較ページを確認",
+                searchTips: "「[企業名] vs [競合企業名]」「[業界名] 企業比較」",
+                aiPrompt: "[企業名]と主要な競合企業を比較し、その違いや特徴を説明してください。",
+                example1: "[企業名]は〇〇分野で△△企業と競合していますが、××という点で優位性を持っています。一方、□□の面では課題があります。",
+                example2: "市場シェアでは[競合企業A]に次ぐ第2位ですが、顧客満足度調査では[企業名]が業界トップを維持しています。"
+            },
+            {
+                title: "採用情報",
+                purpose: "企業の人材ニーズや職場環境を理解する",
+                points: "募集職種、求める人材像、研修制度、福利厚生",
+                howTo: "企業の採用ページや、就職情報サイトの企業ページを確認",
+                searchTips: "「[企業名] 採用」「[企業名] 新卒募集」",
+                aiPrompt: "[企業名]の採用情報について、募集職種や特徴的な制度を教えてください。",
+                example1: "[企業名]では、〇〇職と△△職を中心に採用を行っています。特に××スキルを持つ人材を求めており、入社後は□□研修制度が充実しています。",
+                example2: "ワークライフバランスを重視し、フレックスタイム制度や在宅勤務制度を導入しています。また、資格取得支援制度も充実しています。"
+            },
+            {
+                title: "求められる人物像",
+                purpose: "企業が期待する人材のスキルや資質を理解する",
+                points: "必要なスキル、求める性格特性、企業文化との適合性",
+                howTo: "企業の採用ページの「求める人材像」セクションを確認",
+                searchTips: "「[企業名] 求める人材像」「[企業名] 採用 人物像」",
+                aiPrompt: "[企業名]が求めている人物像について、具体的に説明してください。",
+                example1: "[企業名]では、〇〇に興味を持ち、△△な課題に積極的に取り組む姿勢を重視しています。また、××能力と□□スキルが求められます。",
+                example2: "グローバルな環境で活躍できる語学力と、多様性を尊重する姿勢が[企業名]で求められる重要な資質です。"
+            }
+        ];
+
+        function createResearchSections() {
+            const container = document.getElementById('research-sections');
+            researchItems.forEach((item, index) => {
+                const section = document.createElement('div');
+                section.className = 'research-item';
+                section.innerHTML = `
+                    <h3>${index + 1}. ${item.title}</h3>
+                    <p><strong>目的：</strong>${item.purpose}</p>
+                    <p><strong>着眼ポイント：</strong>${item.points}</p>
+                    <p><strong>調べ方：</strong>${item.howTo}</p>
+                    <p><strong>検索のコツ：</strong>${item.searchTips}</p>
+                    <p><strong>AI検索プロンプト例：</strong>${item.aiPrompt}</p>
+                    <p><strong>記入例1：</strong>${item.example1}</p>
+                    <p><strong>記入例2：</strong>${item.example2}</p>
+                    <textarea id="research-${index}" rows="5" placeholder="${item.title}について調べた内容を記入してください"></textarea>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        function downloadResearch() {
+            const companyName = document.getElementById('company-name').value;
+            let content = `企業研究：${companyName}\n\n`;
+
+            researchItems.forEach((item, index) => {
+                const textarea = document.getElementById(`research-${index}`);
+                content += `${index + 1}. ${item.title}\n${textarea.value}\n\n`;
+            });
+
+            const overallImpression = document.getElementById('overall-impression').value;
+            content += `総合的な感想：\n${overallImpression}`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${companyName}企業研究.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function generateAIPrompt() {
+            const companyName = document.getElementById('company-name').value;
+            if (!companyName) {
+                alert('企業名を入力してください。');
+                return;
+            }
+
+            return `次の企業について詳細な分析を行ってください：${companyName}
+
+以下の項目について、できるだけ具体的に説明してください：
+
+1. 企業概要（設立年、従業員数、資本金、売上高、事業領域）
+2. 企業理念（ミッション、ビジョン、バリュー）
+3. 主な事業内容とその社会的役割
+4. 企業の特徴と強み
+5. 企業の弱みと今後の課題
+6. 主要な競合企業との比較
+7. 最新の採用情報
+8. 求められる人物像
+
+それぞれの項目について、信頼できる情報源からの具体的なデータや事例を含めてください。また、業界動向や市場環境についても触れ、総合的な分析を提供してください。`;
+        }
+
+        function showAIPrompt() {
+            const prompt = generateAIPrompt();
+            if (prompt) {
+                document.getElementById('ai-prompt-text').value = prompt;
+                document.getElementById('ai-prompt-container').style.display = 'block';
+                document.getElementById('copy-button').style.display = 'inline-block';
+            }
+        }
+
+        function copyAIPrompt() {
+            const promptText = document.getElementById('ai-prompt-text');
+            promptText.select();
+            document.execCommand('copy');
+            alert('AI検索用のプロンプトがクリップボードにコピーされました。お好みのAI検索ツールに貼り付けてご利用ください。');
+        }
+
+        // ページ読み込み時に実行
+        window.onload = function() {
+            createResearchSections();
+        };
+    </script>
+</body>
+</html> 
