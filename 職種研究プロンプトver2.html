@@ -5,75 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>職種研究プログラム</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f8ff;
-        }
-        h1, h2 {
-            color: #1d1d85;
-        }
-        h1 {
-        text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .job-item {
-            background-color: #e6f3ff;
-            border: 1px solid #b3d9ff;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .job-item h3 {
-            margin-top: 0;
-            color: #0066cc;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #0066cc;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        button:hover {
-            background-color: #0052a3;
-        }
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .warning {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 20px;
-            color: #856404;
-        }
-        #promptArea {
-            display: none;
-        }
+       body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* メインに合わせてフォント統一 */
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f8ff; /* 背景色はそのまま */
+    max-width: 800px; /* メインの最大幅に合わせる */
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #1d1d85;
+    text-align: center;
+}
+
+.container {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.job-item {
+    background-color: #e6f3ff;
+    border: 2px solid #b3d9ff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    line-height: 1.6; /* メインの行間に合わせる */
+}
+
+.job-item h3 {
+    margin-top: 0;
+    color: #0066cc;
+}
+
+textarea {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* メインの角丸に合わせる */
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px; /* メインのボタンデザインに合わせる */
+    cursor: pointer;
+    transition: background-color 0.3s; /* メインと同じホバーエフェクト */
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #0052a3;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* メインと統一 */
+}
+
+.warning {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffeeba;
+    border-radius: 4px; /* メインと統一 */
+    padding: 15px;
+    margin-top: 20px;
+    color: #856404;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+}
+
     </style>
 </head>
 <body>

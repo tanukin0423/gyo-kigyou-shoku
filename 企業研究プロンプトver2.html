@@ -5,65 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>企業研究ページ</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5e5d5;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #653202;
-        }
-        h1 {
-        text-align: center;
-        }
-        .input-section {
-            margin-bottom: 20px;
-        }
-        .research-item {
-            background-color: #f9f3ee;
-            border: 1px solid #e0d5c5;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .research-item h3 {
-            margin-top: 0;
-            color: #6d4c41;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            resize: vertical;
-        }
-        button {
-            background-color: #6d4c41;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #5d4037;
-        }
-        .warning {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
+      body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* メインに合わせてフォント統一 */
+    background-color: #f5e5d5; /* 背景色はそのまま */
+    padding: 20px;
+    max-width: 800px; /* メインの最大幅に合わせる */
+    margin: 0 auto;
+    line-height: 1.6; /* メインと一致させる */
+}
+
+.container {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #653202;
+    text-align: center;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.research-item {
+    background-color: #f9f3ee;
+    border: 1px solid #e0d5c5;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    line-height: 1.6; /* メインの行間に合わせる */
+}
+
+.research-item h3 {
+    margin-top: 0;
+    color: #6d4c41;
+}
+
+textarea {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* メインの角丸に合わせる */
+    resize: vertical;
+}
+
+button {
+    background-color: #6d4c41;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px; /* メインのボタンのデザインに合わせる */
+    cursor: pointer;
+    transition: background-color 0.3s; /* メインのホバーエフェクトに合わせる */
+    margin-top: 10px; /* 上に10pxの余白 */
+    margin-bottom: 10px; /* 下に10pxの余白 */
+}
+
+button:hover {
+    background-color: #5d4037;
+}
+
+.warning {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffeeba;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+}
+ 
     </style>
 </head>
 <body>
@@ -83,7 +101,9 @@
             <textarea id="overall-impression" rows="5" placeholder="企業研究を通じて感じたこと、気づいたことを書いてください。"></textarea>
         </div>
 
+        <div>
         <button onclick="downloadResearch()">研究内容をダウンロード</button>
+        </div>
 
         <div class="button-group">
             <button onclick="showAIPrompt()">AI検索プロンプトを表示</button>
