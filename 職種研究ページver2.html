@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職種研究プログラム</title>
+    <style>
+       body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* メインに合わせてフォント統一 */
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f8ff; /* 背景色はそのまま */
+    max-width: 800px; /* メインの最大幅に合わせる */
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #1d1d85;
+    text-align: center;
+}
+
+.container {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.job-item {
+    background-color: #e6f3ff;
+    border: 2px solid #b3d9ff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    line-height: 1.6; /* メインの行間に合わせる */
+}
+
+.job-item h3 {
+    margin-top: 0;
+    color: #0066cc;
+}
+
+textarea {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* メインの角丸に合わせる */
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px; /* メインのボタンデザインに合わせる */
+    cursor: pointer;
+    transition: background-color 0.3s; /* メインと同じホバーエフェクト */
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #0052a3;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* メインと統一 */
+}
+
+.warning {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffeeba;
+    border-radius: 4px; /* メインと統一 */
+    padding: 15px;
+    margin-top: 20px;
+    color: #856404;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">職種企業研究プログラム</h1>
+        <p>このプログラムを使用して、興味のある職種について深く研究しましょう。各項目を丁寧に調べ、自分の考えをまとめていくことで、職種に対する理解を深めることができます。</p>
+        
+        <h2>職種を選択してください：</h2>
+        <select id="jobSelect">
+            <option value="">選択してください</option>
+            <option value="営業職">営業職</option>
+            <option value="事務職">事務職</option>
+            <option value="エンジニア">エンジニア</option>
+            <option value="デザイナー">デザイナー</option>
+            <option value="マーケティング">マーケティング</option>
+            <option value="人事">人事</option>
+            <option value="財務・経理">財務・経理</option>
+            <option value="カスタマーサポート">カスタマーサポート</option>
+            <option value="販売員">販売員</option>
+            <option value="教師">教師</option>
+            <option value="看護師">看護師</option>
+            <option value="プロジェクトマネージャー">プロジェクトマネージャー</option>
+            <option value="データアナリスト">データアナリスト</option>
+            <option value="コンサルタント">コンサルタント</option>
+            <option value="Webディベロッパー">Webディベロッパー</option>
+            <option value="広報">広報</option>
+            <option value="研究開発">研究開発</option>
+            <option value="法務">法務</option>
+            <option value="物流">物流</option>
+            <option value="飲食サービス">飲食サービス</option>
+        </select>
+        <input type="text" id="customJob" placeholder="その他の職種を入力">
+
+        <div id="jobItems"></div>
+
+        <h2>全体の感想：</h2>
+        <textarea id="overallImpression" rows="5" placeholder="調査を通じて気づいたこと、興味を持った点などを書いてください。"></textarea>
+
+        <button id="downloadBtn">結果をダウンロード</button>
+
+        <h2>AI検索用プロンプト：</h2>
+        <button id="showPromptBtn">プロンプトを表示</button>
+        <div id="promptArea">
+            <textarea id="aiPrompt" rows="10"></textarea>
+            <button id="copyPromptBtn">プロンプトをコピー</button>
+        </div>
+
+        <div class="warning">
+            <h3>AIの活用に関する注意</h3>
+            <p>AIは適切に活用すれば素晴らしい効果を発揮します。しかし、使い方次第では無意味になる可能性があります。AIを補助ツールとして利用し、最終的な判断や考察は自分自身で行うようにしましょう。また、AIの情報を鵜呑みにせず、常に批判的思考を持って評価することが重要です。</p>
+        </div>
+    </div>
+
+    <script>
+        const jobItems = [
+            {
+                title: "職種名と仕事の中身",
+                purpose: "選択した職種の基本的な役割と責任を理解する",
+                focus: "職務内容、主な業務、求められる成果",
+                research: "企業の採用ページや職務経歴書の例を参照",
+                keywords: "職務内容, 業務内容, 役割, 責任",
+                aiPrompt: "[職種名]の主な業務内容と役割について教えてください。",
+                sample1: "[職種名]は、主に[主要な業務]を担当します。具体的には、[詳細な業務内容]などが含まれます。",
+                sample2: "この職種の重要な役割は[主な役割]であり、[具体的な責任]を果たすことが求められます。"
+            },
+            {
+                title: "企業内における職種の役割と重要性",
+                purpose: "選択した職種が企業全体にどのように貢献しているかを理解する",
+                focus: "他部門との連携、企業目標への貢献度",
+                research: "企業の組織図や年次報告書を確認",
+                keywords: "組織構造, 部門間連携, 経営戦略",
+                aiPrompt: "[職種名]が企業全体にどのように貢献しているか、その重要性について説明してください。",
+                sample1: "[職種名]は企業の[具体的な分野]において重要な役割を果たしています。特に[具体的な貢献]によって、企業の[目標や成果]に大きく寄与しています。",
+                sample2: "この職種は[他の部門名]と密接に連携し、[具体的な連携内容]を行うことで、企業全体の[具体的な目標]達成に貢献しています。"
+            },
+            {
+                title: "日常業務",
+                purpose: "職種の具体的な日々の仕事内容を把握する",
+                focus: "定型業務、プロジェクト業務、会議や報告書作成など",
+                research: "就職情報サイトの職種説明や、社員インタビューを参照",
+                keywords: "日常業務, ルーチンワーク, タスク管理",
+                aiPrompt: "[職種名]の典型的な1日の業務スケジュールと主なタスクについて教えてください。",
+                sample1: "[職種名]の1日は通常、[朝の業務]から始まり、[午前中の主要タスク]を行います。午後は[午後の主要タスク]に取り組み、[夕方の業務]で1日を締めくくります。",
+                sample2: "主な日常業務には、[具体的なタスク1]、[具体的なタスク2]、[具体的なタスク3]などがあります。また、定期的に[定期的な業務]も行います。"
+            },
+            {
+                title: "必要なスキル",
+                purpose: "職種で成功するために必要な能力やスキルを理解する",
+                focus: "技術的スキル、ソフトスキル、資格や経験",
+                research: "求人広告や、業界団体のスキル基準を確認",
+                keywords: "必須スキル, 推奨スキル, 資格, 経験",
+                aiPrompt: "[職種名]に必要な主要なスキルと、それらがなぜ重要かを説明してください。",
+                sample1: "[職種名]には、[技術的スキル1]、[技術的スキル2]などの技術的スキルが重要です。これらは[具体的な業務]を行う上で不可欠です。",
+                sample2: "また、[ソフトスキル1]や[ソフトスキル2]といったソフトスキルも重要で、[具体的な状況]での活用が求められます。資格としては[資格名]が有利です。"
+            },
+            {
+                title: "適性と価値観",
+                purpose: "職種に向いている人物像や、求められる価値観を理解する",
+                focus: "性格特性、仕事への姿勢、価値観",
+                research: "企業の求める人物像や、職種に関する適性検査を参照",
+                keywords: "適性, 価値観, パーソナリティ, 職業観",
+                aiPrompt: "[職種名]に向いている人の特徴と、この職種で重視される価値観について説明してください。",
+                sample1: "[職種名]には、[性格特性1]や[性格特性2]を持つ人が向いています。特に[具体的な状況]において、これらの特性が活かされます。",
+                sample2: "この職種では、[価値観1]や[価値観2]が重視されます。例えば、[具体的な例]のような場面で、これらの価値観が仕事の質に大きく影響します。"
+            },
+            {
+                title: "キャリアパス",
+                purpose: "職種での長期的なキャリア展望を理解する",
+                focus: "昇進ルート、スキルアップの機会、関連職種への異動可能性",
+                research: "企業の人事制度や、業界のキャリアパス事例を調査",
+                keywords: "キャリアアップ, 昇進, スキル開発, 異動",
+                aiPrompt: "[職種名]の一般的なキャリアパスと、各段階で求められる能力について説明してください。",
+                sample1: "[職種名]のキャリアパスは通常、[初級職位]から始まり、[中級職位]、[上級職位]と進みます。各段階で[具体的なスキルや責任]が求められます。",
+                sample2: "キャリアの発展に伴い、[具体的なスキル]の向上が必要となります。また、[関連職種名]へのキャリアチェンジの可能性もあります。"
+            },
+            {
+                title: "職場環境と労働条件",
+                purpose: "職種の一般的な労働環境や条件を理解する",
+                focus: "勤務時間、給与水準、福利厚生、ワークライフバランス",
+                research: "求人情報や、労働統計データを確認",
+                keywords: "労働時間, 給与, 福利厚生, ワークライフバランス",
+                aiPrompt: "[職種名]の一般的な労働条件と職場環境について、具体的に説明してください。",
+                sample1: "[職種名]の平均的な労働時間は[時間]程度で、[具体的な勤務形態]が一般的です。給与水準は[給与範囲]で、経験や能力に応じて上昇します。",
+                sample2: "福利厚生面では、[具体的な福利厚生1]や[具体的な福利厚生2]が一般的です。ワークライフバランスについては、[具体的な特徴や取り組み]が見られます。"
+            },
+            {
+                title: "業界・企業内での需要予測",
+                purpose: "職種の将来性や市場での需要を理解する",
+                focus: "業界トレンド、技術革新の影響、雇用の安定性",
+                research: "業界レポートや、政府の労働市場予測を確認",
+                keywords: "需要予測, 市場トレンド, 雇用動向, 技術革新",
+                aiPrompt: "[職種名]の今後5-10年の需要予測と、それに影響を与える要因について説明してください。",
+                sample1: "[職種名]の需要は今後[X]年間で[増加/減少]すると予測されています。主な要因として、[具体的な要因1]や[具体的な要因2]が挙げられます。",
+                sample2: "技術革新の影響により、[具体的な変化]が予想されます。これに伴い、[新たなスキルや役割]の重要性が増すと考えられます。"
+            }
+        ];
+
+        function createJobItems() {
+            const jobItemsContainer = document.getElementById('jobItems');
+            jobItemsContainer.innerHTML = '';
+
+            jobItems.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'job-item';
+                itemDiv.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p><strong>目的:</strong> ${item.purpose}</p>
+                    <p><strong>着眼ポイント:</strong> ${item.focus}</p>
+                    <p><strong>調査方法:</strong> ${item.research}</p>
+                    <p><strong>キーワード:</strong> ${item.keywords}</p>
+                    <p><strong>AIプロンプト例:</strong> ${item.aiPrompt}</p>
+                    <p><strong>サンプル回答1:</strong> ${item.sample1}</p>
+                    <p><strong>サンプル回答2:</strong> ${item.sample2}</p>
+                    <textarea id="jobItem${index}" rows="5" placeholder="この項目について調べた内容を入力してください。"></textarea>
+                `;
+                jobItemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        function updateAIPrompt() {
+            const jobSelect = document.getElementById('jobSelect');
+            const customJob = document.getElementById('customJob');
+            const aiPrompt = document.getElementById('aiPrompt');
+            const selectedJob = jobSelect.value || customJob.value;
+
+            if (selectedJob) {
+                const promptText = `${selectedJob}について以下の項目を詳しく教えてください：
+
+1. 職種名と仕事の中身
+2. 企業内における職種の役割と重要性
+3. 日常業務の具体的な内容
+4. 必要なスキルと能力
+5. 適性のある人物像と求められる価値観
+6. キャリアパス
+7. 一般的な職場環境と労働条件
+8. 業界・企業内での需要予測
+
+それぞれの項目について、具体例や統計データを含めて詳細に説明してください。`;
+
+                aiPrompt.value = promptText;
+            } else {
+                aiPrompt.value = "職種を選択するか入力してください。";
+            }
+        }
+
+        function copyPrompt() {
+            const aiPrompt = document.getElementById('aiPrompt');
+            aiPrompt.select();
+            document.execCommand('copy');
+            alert('プロンプトをクリップボードにコピーしました。');
+        }
+
+        function downloadResults() {
+            let content = "職種研究結果\n\n";
+            const jobSelect = document.getElementById('jobSelect');
+            const customJob = document.getElementById('customJob');
+            const selectedJob = jobSelect.value || customJob.value;
+            content += `選択した職種: ${selectedJob}\n\n`;
+
+            jobItems.forEach((item, index) => {
+                const textarea = document.getElementById(`jobItem${index}`);
+                content += `${item.title}:\n${textarea.value}\n\n`;
+            });
+
+            const overallImpression = document.getElementById('overallImpression');
+            content += `全体の感想:\n${overallImpression.value}\n`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = '職種研究結果.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createJobItems();
+            updateAIPrompt();
+
+            document.getElementById('jobSelect').addEventListener('change', updateAIPrompt);
+            document.getElementById('customJob').addEventListener('input', updateAIPrompt);
+            document.getElementById('copyPromptBtn').addEventListener('click', copyPrompt);
+            document.getElementById('downloadBtn').addEventListener('click', downloadResults);
+
+            const showPromptBtn = document.getElementById('showPromptBtn');
+            const promptArea = document.getElementById('promptArea');
+            showPromptBtn.addEventListener('click', () => {
+                if (promptArea.style.display === 'none' || promptArea.style.display === '') {
+                    promptArea.style.display = 'block';
+                    showPromptBtn.textContent = 'プロンプトを隠す';
+                } else {
+                    promptArea.style.display = 'none';
+                    showPromptBtn.textContent = 'プロンプトを表示';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
