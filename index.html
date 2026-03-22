@@ -1,136 +1,339 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>就職研究ツール</title>
-    <style>
-        :root {
-            --industry-color: #4CAF50;
-            --company-color: #8B4513;
-            --occupation-color: #007BFF;
-            --background-color: #f0f8ff;
-            --text-color: #333;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: var(--occupation-color);
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        .logo {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .logo-icon {
-            font-size: 2.5rem;
-            margin-right: 10px;
-        }
-        h1 {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-        .research-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 2rem;
-        }
-        .research-button {
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin: 10px 0;
-            text-decoration: none;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80%;
-            max-width: 300px;
-        }
-        .industry-button { background-color: var(--industry-color); }
-        .company-button { background-color: var(--company-color); }
-        .occupation-button { background-color: var(--occupation-color); }
-        .research-button:hover { opacity: 0.8; }
-        .research-info {
-            margin-top: 2rem;
-        }
-        .research-info h2 {
-            color: var(--occupation-color);
-            font-size: 1.5rem;
-        }
-        .research-info p {
-            font-size: 1rem;
-        }
-        @media (min-width: 768px) {
-            .research-buttons {
-                flex-direction: row;
-                justify-content: space-around;
-            }
-            .research-button {
-                width: 30%;
-            }
-            .logo {
-                font-size: 2rem;
-            }
-            .logo-icon {
-                font-size: 3rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業界・企業・職種研究ツール｜就活の木</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+  :root {
+    --green-dark: #2C5F2D;
+    --green-mid: #4A8C4B;
+    --green-light: #97BC62;
+    --green-pale: #E8F5E9;
+    --amber: #F59E0B;
+    --gray-dark: #1F2937;
+    --gray-mid: #6B7280;
+    --gray-light: #F3F4F6;
+    --shadow: 0 4px 20px rgba(0,0,0,0.10);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(135deg, #f0fdf0 0%, #fefce8 50%, #f0fdf4 100%);
+    min-height: 100vh;
+    padding: 24px 16px 40px;
+    color: var(--gray-dark);
+  }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--green-dark);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 900;
+    color: var(--green-dark);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .header .sub {
+    font-size: 13px;
+    color: var(--gray-mid);
+    line-height: 1.7;
+  }
+
+  /* 目的ボックス */
+  .purpose-box {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    background: white;
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--amber);
+  }
+  .purpose-box .purpose-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #92400E;
+    margin-bottom: 8px;
+  }
+  .purpose-box p {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.75;
+  }
+
+  /* ステップ案内 */
+  .step-guide {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    background: white;
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .step-guide .guide-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+  .step-item.s1 { background: #F0FDF4; border: 1px solid #BBF7D0; }
+  .step-item.s2 { background: #EFF6FF; border: 1px solid #BFDBFE; }
+  .step-item.s3 { background: #FFF7ED; border: 1px solid #FED7AA; }
+  .step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .s1 .step-num { background: var(--green-dark); color: white; }
+  .s2 .step-num { background: #1D4ED8; color: white; }
+  .s3 .step-num { background: #C2410C; color: white; }
+  .step-content { flex: 1; }
+  .step-content .step-label {
+    font-weight: 700;
+    color: var(--gray-dark);
+    margin-bottom: 2px;
+  }
+  .step-content .step-desc {
+    font-size: 12px;
+    color: var(--gray-mid);
+  }
+  .step-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-mid);
+    white-space: nowrap;
+  }
+  .arrow {
+    text-align: center;
+    font-size: 18px;
+    color: var(--gray-mid);
+    line-height: 1;
+  }
+
+  /* 3ボタン */
+  .buttons {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .research-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: white;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .research-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  .research-btn.industry { background: linear-gradient(135deg, #2C5F2D, #4A8C4B); }
+  .research-btn.company  { background: linear-gradient(135deg, #92400E, #B45309); }
+  .research-btn.job      { background: linear-gradient(135deg, #1E40AF, #2563EB); }
+
+  .btn-step {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .btn-icon { font-size: 28px; flex-shrink: 0; }
+  .btn-text { flex: 1; }
+  .btn-text .btn-name {
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 3px;
+  }
+  .btn-text .btn-desc {
+    font-size: 11px;
+    opacity: 0.85;
+    line-height: 1.4;
+  }
+  .btn-arrow {
+    font-size: 20px;
+    opacity: 0.7;
+  }
+
+  /* 注意書き */
+  .caution {
+    max-width: 600px;
+    margin: 0 auto 24px;
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: #92400E;
+    line-height: 1.75;
+  }
+  .caution .caution-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--gray-mid);
+    margin-top: 8px;
+  }
+
+  @media (min-width: 600px) {
+    .buttons {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .research-btn {
+      flex: 1;
+      min-width: 160px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      padding: 24px 16px;
+    }
+    .btn-arrow { display: none; }
+    .btn-text .btn-name { font-size: 15px; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="logo-icon">🔍</span>
-            就職研究ツール
-        </div>
-        <h1>あなたのキャリアの第一歩をサポート</h1>
-    </header>
-    
-    <div class="container">
-        <div class="research-buttons">
-            <a href="業界研究ページver8.html" class="research-button industry-button">
-                業界研究
-                <span>🌱</span>
-            </a>
-            <a href="企業研究ページver2.html" class="research-button company-button">
-                企業研究
-                <span>🏢</span>
-            </a>
-            <a href="職種研究ページver2.html" class="research-button occupation-button">
-                職種研究
-                <span>🔧</span>
-            </a>
-        </div>
-        
-        <div class="research-info">
-            <h2>研究の重要性</h2>
-            <p><strong>業界研究：</strong>業界全体の動向や特徴を理解することで、将来性のある分野を見極め、長期的なキャリアプランを立てることができます。</p>
-            <p><strong>企業研究：</strong>企業の文化、価値観、経営方針を知ることで、自分に合った職場環境を見つけ、ミスマッチを防ぐことができます。</p>
-            <p><strong>職種研究：</strong>具体的な仕事内容や必要なスキルを把握することで、自己の適性を見極め、効果的なキャリア選択ができます。</p>
-        </div>
+
+<div class="header">
+  <div class="badge">🌱 就活の木 | キャリ爺作成</div>
+  <h1>業界・企業・職種<br>研究ツール</h1>
+  <p class="sub">AIを活用して、志望動機の「根拠」を作ろう。<br>「なんとなく大手」から卒業する第一歩です。</p>
+</div>
+
+<!-- 目的ボックス -->
+<div class="purpose-box">
+  <div class="purpose-title">🔥 キャリ爺からひとこと</div>
+  <p>このツールは「AIに調べてもらう」ためではありません。<br>
+  AIへの質問を通じて、<strong>自分の考えを深める</strong>ためのツールです。<br>
+  出てきた回答は必ず自分の言葉で咀嚼してください。それが面接で生きます。</p>
+</div>
+
+<!-- ステップ案内 -->
+<div class="step-guide">
+  <div class="guide-title">📋 この順番で使うと効果的です</div>
+  <div class="steps">
+    <div class="step-item s1">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label">🌱 業界研究——まず「世界」を広げる</div>
+        <div class="step-desc">19業界から選んでAIで調べる。興味のある分野を見つける。</div>
+      </div>
+      <div class="step-time">約15〜20分</div>
     </div>
+    <div class="arrow">↓</div>
+    <div class="step-item s2">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label">🔧 職種研究——「何をする仕事か」を知る</div>
+        <div class="step-desc">20職種から選んで調べる。同じ企業でも職種で仕事は全く違う。</div>
+      </div>
+      <div class="step-time">約15〜20分</div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="step-item s3">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label">🏢 企業研究——気になる企業を深掘りする</div>
+        <div class="step-desc">企業名・業界・職種・自分の経験を入れてプロンプト生成。ES・面接準備に直結。</div>
+      </div>
+      <div class="step-time">約20〜30分</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3ボタン -->
+<div class="buttons">
+  <a href="業界研究ページver8.html" class="research-btn industry">
+    <div class="btn-step">1</div>
+    <div class="btn-icon">🌱</div>
+    <div class="btn-text">
+      <div class="btn-name">業界研究</div>
+      <div class="btn-desc">19業界対応<br>AIプロンプト生成</div>
+    </div>
+    <div class="btn-arrow">›</div>
+  </a>
+  <a href="職種研究ページver2.html" class="research-btn job">
+    <div class="btn-step">2</div>
+    <div class="btn-icon">🔧</div>
+    <div class="btn-text">
+      <div class="btn-name">職種研究</div>
+      <div class="btn-desc">20職種対応<br>AIプロンプト生成</div>
+    </div>
+    <div class="btn-arrow">›</div>
+  </a>
+  <a href="企業研究ページver2.html" class="research-btn company">
+    <div class="btn-step">3</div>
+    <div class="btn-icon">🏢</div>
+    <div class="btn-text">
+      <div class="btn-name">企業研究</div>
+      <div class="btn-desc">企業名を入力<br>AIプロンプト生成</div>
+    </div>
+    <div class="btn-arrow">›</div>
+  </a>
+</div>
+
+<!-- 注意書き -->
+<div class="caution">
+  <div class="caution-title">⚠️ AIを使う上での大切なこと</div>
+  AIの回答をそのままコピー＆ペーストすることは意味がありません。必ず自分の言葉で考察し、理解を深めてください。最終面接では、面接官はあなたの本当の理解度を見抜くことができます。AIを賢く活用し、自分の知識と洞察を磨きましょう。
+</div>
+
+<div class="footer">🌱 就活の木 | キャリ爺作成</div>
+
 </body>
 </html>
