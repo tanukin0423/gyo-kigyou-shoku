@@ -11,6 +11,7 @@
   --amber:#F59E0B;--amber-p:#FEF3C7;--amber-d:#92400E;
   --blue:#1D4ED8;--blue-p:#EFF6FF;--blue-d:#1E40AF;
   --teal:#0F6E56;--teal-p:#E1F5EE;--teal-d:#065F46;
+  --brown:#7C5A2E;--brown-p:#F5ECD7;--brown-d:#5C3D1E;--brown-btn:#9B6B3A;
   --coral:#DC2626;--coral-p:#FEE2E2;--coral-d:#991B1B;
   --purple:#7C3AED;--purple-p:#EDE9FE;--purple-d:#5B21B6;
   --gray:#6B7280;--gray-p:#F3F4F6;--text:#1F2937;
@@ -60,10 +61,12 @@ body{
 }
 .tab-btn .tab-icon{font-size:18px;}
 .tab-btn .tab-label{font-size:11px;}
-.tab-btn:hover:not(.active){background:var(--gbg);color:var(--gm);}
-.tab-btn.active.gyokai{color:var(--gd);border-bottom-color:var(--gd);}
-.tab-btn.active.shokushu{color:var(--blue);border-bottom-color:var(--blue);}
-.tab-btn.active.kigyo{color:var(--teal);border-bottom-color:var(--teal);}
+.tab-btn.gyokai:hover:not(.active){background:#C8E6C9;color:var(--gd);}
+.tab-btn.shokushu:hover:not(.active){background:#BFDBFE;color:var(--blue-d);}
+.tab-btn.kigyo:hover:not(.active){background:#D4B896;color:var(--brown-d);}
+.tab-btn.active.gyokai{color:var(--gd);border-bottom-color:var(--gd);background:#E8F5E9;}
+.tab-btn.active.shokushu{color:var(--blue);border-bottom-color:var(--blue);background:#EFF6FF;}
+.tab-btn.active.kigyo{color:var(--brown);border-bottom-color:var(--brown);background:var(--brown-p);}
 
 /* ページ */
 .page{display:none;max-width:680px;margin:0 auto;padding:28px 20px 60px;}
@@ -75,11 +78,11 @@ body{
 }
 .opening.gyokai{background:var(--gp);border-left:5px solid var(--gd);}
 .opening.shokushu{background:var(--blue-p);border-left:5px solid var(--blue);}
-.opening.kigyo{background:var(--teal-p);border-left:5px solid var(--teal);}
+.opening.kigyo{background:var(--brown-p);border-left:5px solid var(--brown);}
 .opening .op-label{font-size:11px;font-weight:700;letter-spacing:0.1em;margin-bottom:8px;}
 .opening.gyokai .op-label{color:var(--gm);}
 .opening.shokushu .op-label{color:var(--blue);}
-.opening.kigyo .op-label{color:var(--teal);}
+.opening.kigyo .op-label{color:var(--brown);}
 .opening h2{font-size:16px;font-weight:900;color:var(--text);margin-bottom:10px;}
 .opening p{font-size:13px;line-height:1.85;color:var(--text);}
 
@@ -99,7 +102,7 @@ body{
 }
 .sel:focus{outline:none;border-color:var(--gm);box-shadow:0 0 0 3px rgba(74,140,75,0.15);}
 .sel.blue:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,78,216,0.15);}
-.sel.teal:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,110,86,0.15);}
+.sel.teal:focus{border-color:var(--brown);box-shadow:0 0 0 3px rgba(124,90,46,0.15);}
 
 /* 企業名入力 */
 .input-wrap{margin-bottom:20px;}
@@ -110,7 +113,7 @@ body{
   font-size:14px;color:var(--text);
   transition:border-color 0.15s;
 }
-.inp:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,110,86,0.15);}
+.inp:focus{outline:none;border-color:var(--brown);box-shadow:0 0 0 3px rgba(124,90,46,0.15);}
 
 /* 調査カード */
 .research-card{
@@ -132,7 +135,7 @@ body{
 }
 .gyokai .rc-num{background:var(--gp);color:var(--gd);}
 .shokushu .rc-num{background:var(--blue-p);color:var(--blue);}
-.kigyo .rc-num{background:var(--teal-p);color:var(--teal);}
+.kigyo .rc-num{background:var(--brown-p);color:var(--brown);}
 .rc-title{flex:1;font-size:14px;font-weight:700;color:var(--text);}
 .rc-purpose{font-size:11px;color:var(--gray);margin-top:2px;}
 .rc-arrow{font-size:12px;color:var(--gray);transition:transform 0.2s;}
@@ -167,7 +170,7 @@ body{
 .memo:focus{outline:none;}
 .gyokai .memo:focus{border-color:var(--gm);}
 .shokushu .memo:focus{border-color:var(--blue);}
-.kigyo .memo:focus{border-color:var(--teal);}
+.kigyo .memo:focus{border-color:var(--brown);}
 
 /* キャリ爺コメント */
 .doshi{
@@ -205,8 +208,8 @@ body{
 .gyokai .copy-btn:hover{background:var(--gm);}
 .shokushu .copy-btn{background:var(--blue);color:white;}
 .shokushu .copy-btn:hover{background:var(--blue-d);}
-.kigyo .copy-btn{background:var(--teal);color:white;}
-.kigyo .copy-btn:hover{background:var(--teal-d);}
+.kigyo .copy-btn{background:var(--brown);color:white;}
+.kigyo .copy-btn:hover{background:var(--brown-d);}
 .copy-btn:active{transform:scale(0.98);}
 
 .copy-note{
@@ -243,7 +246,7 @@ body{
 }
 .gyokai .summary{background:linear-gradient(135deg,var(--gd),var(--gm));}
 .shokushu .summary{background:linear-gradient(135deg,var(--blue-d),var(--blue));}
-.kigyo .summary{background:linear-gradient(135deg,var(--teal-d),var(--teal));}
+.kigyo .summary{background:linear-gradient(135deg,var(--brown-d),var(--brown));}
 .summary .sum-icon{font-size:36px;margin-bottom:10px;}
 .summary p{font-size:13px;line-height:1.85;opacity:0.92;}
 .summary .sum-quote{
@@ -251,6 +254,40 @@ body{
   border-radius:10px;padding:12px;
   font-size:12px;line-height:1.75;font-style:italic;
 }
+
+/* インスタント研究ボタン */
+.instant-wrap{
+  background:white;border-radius:16px;
+  box-shadow:var(--shadow);padding:20px;
+  margin-bottom:20px;
+}
+.instant-title{font-size:13px;font-weight:700;color:var(--gray);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.instant-note{
+  font-size:12px;color:var(--gray);
+  background:var(--gray-p);border-radius:8px;
+  padding:10px 12px;margin-bottom:12px;line-height:1.7;
+}
+.instant-note.warn{background:#FEF3C7;color:var(--amber-d);border-left:3px solid var(--amber);}
+.instant-btn{
+  width:100%;padding:14px;border:none;border-radius:12px;
+  font-size:14px;font-weight:900;cursor:pointer;
+  font-family:'Noto Sans JP',sans-serif;
+  transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;
+  letter-spacing:0.03em;
+}
+.instant-btn:active{transform:scale(0.98);}
+.gyokai .instant-btn{background:var(--gd);color:white;}
+.gyokai .instant-btn:hover{background:var(--gm);}
+.shokushu .instant-btn{background:var(--blue);color:white;}
+.shokushu .instant-btn:hover{background:var(--blue-d);}
+.kigyo .instant-btn{background:var(--brown);color:white;}
+.kigyo .instant-btn:hover{background:var(--brown-d);}
+
+.divider{
+  display:flex;align-items:center;gap:12px;
+  margin:20px 0;font-size:12px;color:var(--gray);
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#E5E7EB;}
 
 /* コピー完了トースト */
 .toast{
@@ -318,8 +355,8 @@ body{
 
   <!-- 業界選択 -->
   <div class="select-wrap">
-    <div class="select-label">📋 調べたい業界を選んでください</div>
-    <select class="sel" id="sel-gyokai" onchange="updatePrompt('gyokai')">
+    <div class="select-label">📋 調べたい業界を選ぶ、またはテキスト入力してください</div>
+    <select class="sel" id="sel-gyokai" onchange="syncInput('gyokai');updatePrompt('gyokai')">
       <option value="">業界を選択してください</option>
       <option>IT・通信</option>
       <option>金融・保険</option>
@@ -341,7 +378,17 @@ body{
       <option>公務員</option>
       <option>非営利・社会貢献</option>
     </select>
+    <input class="inp" id="inp-gyokai" type="text" placeholder="リストにない業界はこちらに入力（例：宇宙産業、eスポーツ）" style="margin-top:8px;" oninput="updatePrompt('gyokai')">
   </div>
+
+  <!-- インスタント研究 -->
+  <div class="instant-wrap gyokai">
+    <div class="instant-title">🚀 インスタント研究</div>
+    <div class="instant-note">業界を選択してボタンを押すだけ！すぐ使えるシンプルなプロンプトが生成されます。</div>
+    <button class="instant-btn" onclick="instantResearch('gyokai')">🚀 インスタント研究（かんたん版）</button>
+  </div>
+
+  <div class="divider">または、じっくり1つずつ調べる</div>
 
   <!-- 調査1 -->
   <div class="research-card gyokai">
@@ -359,7 +406,7 @@ body{
         <p>業界の全体像を知らないと、企業を比べることができません。「この業界では何が売れているか」「主要なプレイヤーは誰か」を把握することで、企業研究のときに「なぜこの会社か」を語る土台ができます。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-g1" placeholder="例）IT業界では、AIとクラウドが急成長中。主要企業はNTT・富士通・NEC..."></textarea>
+      <textarea class="memo" id="memo-g1" placeholder="例）IT業界では、AIとクラウドが急成長中。主要企業はNTT・富士通・NEC..." oninput="collectMemos('gyokai')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「業界地図を1冊買って、気になる業界に付箋を貼るだけでいい。その付箋の数が、あなたの可能性の数です。」</p>
@@ -383,7 +430,7 @@ body{
         <p>「なぜこの業界を選んだのか」の核心は、「この業界が社会に必要だと感じたから」です。業界の社会的意義を自分の言葉で語れると、志望動機が一気に深まります。「お金のため」ではなく「社会への貢献」を語れる人は、面接で輝きます。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-g2" placeholder="例）医療業界は高齢化社会の課題解決に不可欠。特に地方医療の格差是正が急務..."></textarea>
+      <textarea class="memo" id="memo-g2" placeholder="例）医療業界は高齢化社会の課題解決に不可欠。特に地方医療の格差是正が急務..." oninput="collectMemos('gyokai')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「志望動機の一番深いところには、必ず『社会への想い』があります。その業界がなくなったら、社会はどうなるか——そこから考えてみてください。」</p>
@@ -407,7 +454,7 @@ body{
         <p>「成長性があるから、この業界で働きたい」——これは立派な志望動機です。10年後もこの業界は存在するか、自分のキャリアを長く築けるか。展望を知ることで、「なぜ今この業界に入るのか」を語れるようになります。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-g3" placeholder="例）食品業界は人口減少の影響を受けるが、海外展開・健康食品市場は拡大中..."></textarea>
+      <textarea class="memo" id="memo-g3" placeholder="例）食品業界は人口減少の影響を受けるが、海外展開・健康食品市場は拡大中..." oninput="collectMemos('gyokai')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「縮小する業界でも、その中で成長している分野は必ずあります。『業界全体』ではなく『自分が入る領域』の展望を見てください。」</p>
@@ -417,15 +464,17 @@ body{
 
   <!-- 全体メモ -->
   <div class="overall-memo gyokai">
-    <h3>💭 全体の感想・気になったキーワード</h3>
-    <p>3つを調べて感じたこと、面白いと思ったこと、もっと知りたいことを自由に書いてみよう。</p>
-    <textarea class="memo" id="memo-g-all" placeholder="例）IT業界の中でも、特にAIを使った医療系サービスに興味が湧いた。社会課題と技術が交わる点が面白い..."></textarea>
+    <h3>💭 あなたの感想・気づきを入力しよう</h3>
+    <p>調べて感じたこと、面白いと思ったこと、なぜこの業界が気になるのか——あなたの言葉で自由に書いてください。<br><strong style="color:var(--gd);">この内容がインスタント研究プロンプトに反映され、志望動機のヒントにもつながります！</strong></p>
+    <textarea class="memo" id="memo-g-all" placeholder="例）AIの発達とともに、なくてはならない世の中をリードする業界だと感じた。身の回りはITなしには語れない。技術革新の要になると思う..."></textarea>
+    <button class="instant-btn gyokai" style="margin-top:12px;background:#1B5E20;" onclick="jikkuriResearch('gyokai')">🔍 じっくり研究プロンプトを生成する（志望動機ヒント付き）</button>
+    <div class="copy-note" style="margin-top:6px;">1・2・3のメモ内容＋感想を踏まえた、あなただけのプロンプトが生成されます</div>
   </div>
 
   <!-- AIプロンプト -->
   <div class="prompt-section gyokai">
     <div class="prompt-title">🤖 AIプロンプト生成</div>
-    <div class="prompt-sub">業界を選択すると、あなた専用の質問文が自動生成されます。コピーしてClaude.aiやGeminiに貼り付けてください。</div>
+    <div class="prompt-sub">インスタント（かんたん版）またはじっくり研究で生成されたプロンプトをコピーして使いましょう。</div>
     <div class="prompt-box" id="prompt-gyokai">← まず業界を選択してください</div>
     <button class="copy-btn gyokai" onclick="copyPrompt('gyokai')">📋 プロンプトをコピーする</button>
     <div class="copy-note">コピー後、AIの回答は必ず自分の言葉で咀嚼してください。<br>AIは地図、歩くのはあなたです。</div>
@@ -453,8 +502,8 @@ body{
 
   <!-- 職種選択 -->
   <div class="select-wrap">
-    <div class="select-label">📋 調べたい職種を選んでください</div>
-    <select class="sel blue" id="sel-shokushu" onchange="updatePrompt('shokushu')">
+    <div class="select-label">📋 調べたい職種を選ぶ、またはテキスト入力してください</div>
+    <select class="sel blue" id="sel-shokushu" onchange="syncInput('shokushu');updatePrompt('shokushu')">
       <option value="">職種を選択してください</option>
       <option>営業職（法人）</option>
       <option>営業職（個人）</option>
@@ -477,7 +526,17 @@ body{
       <option>購買・調達</option>
       <option>販売・店舗スタッフ</option>
     </select>
+    <input class="inp" id="inp-shokushu" type="text" placeholder="リストにない職種はこちらに入力（例：ゲームプランナー、バイヤー）" style="margin-top:8px;" oninput="updatePrompt('shokushu')">
   </div>
+
+  <!-- インスタント研究 -->
+  <div class="instant-wrap shokushu">
+    <div class="instant-title">🚀 インスタント研究</div>
+    <div class="instant-note">職種を選択してボタンを押すだけ！すぐ使えるシンプルなプロンプトが生成されます。</div>
+    <button class="instant-btn" onclick="instantResearch('shokushu')">🚀 インスタント研究（かんたん版）</button>
+  </div>
+
+  <div class="divider">または、じっくり1つずつ調べる</div>
 
   <!-- 調査1 -->
   <div class="research-card shokushu">
@@ -495,7 +554,7 @@ body{
         <p>「営業がしたい」だけでは弱い。「○○業界の法人営業で、企業の課題解決に関わりたい」まで言えると、面接官の目が変わります。仕事の中身を具体的に知ることで、「自分がその仕事をしているイメージ」が湧いてきます。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-s1" placeholder="例）法人営業は、新規開拓より既存顧客との関係構築が中心。提案書作成・商談・契約手続きが主な業務..."></textarea>
+      <textarea class="memo" id="memo-s1" placeholder="例）法人営業は、新規開拓より既存顧客との関係構築が中心。提案書作成・商談・契約手続きが主な業務..." oninput="collectMemos('shokushu')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「仕事のイメージができない人は、OB・OG訪問が一番の近道です。実際に働いている人の一日を聞いてみてください。」</p>
@@ -519,7 +578,7 @@ body{
         <p>「向いているから選ぶ」のではなく、「自分の強みが活かせるから選ぶ」が正解です。職種に求められる特性を知ることで、自己PRと志望動機を直接つなげることができます。「私の強みである○○は、この職種で○○として活かせます」——この一文が言えれば完璧です。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-s2" placeholder="例）マーケティング職は、データ分析力と創造性の両方が必要。私の強みである「数字で考える習慣」が活かせそう..."></textarea>
+      <textarea class="memo" id="memo-s2" placeholder="例）マーケティング職は、データ分析力と創造性の両方が必要。私の強みである「数字で考える習慣」が活かせそう..." oninput="collectMemos('shokushu')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「適性は生まれつきではありません。自分の経験の中で『これが得意』と感じた瞬間——それがあなたの適性のヒントです。」</p>
@@ -543,7 +602,7 @@ body{
         <p>面接でよく聞かれる「10年後どうなりたいですか？」に答えるために必要です。キャリアパスを知ることで「この職種で入社し、○年後には○○を目指したい」という具体的なビジョンが語れます。業界の「展望」と組み合わせると、志望動機がさらに強くなります。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-s3" placeholder="例）営業職は、担当→リーダー→マネージャー→営業部長というルートが一般的。専門性を高めてコンサルへの転身も..."></textarea>
+      <textarea class="memo" id="memo-s3" placeholder="例）営業職は、担当→リーダー→マネージャー→営業部長というルートが一般的。専門性を高めてコンサルへの転身も..." oninput="collectMemos('shokushu')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「キャリアパスは地図です。最初の配属が全てではない。でも、どこに向かって歩くかを知っているだけで、日々の仕事の意味が変わります。」</p>
@@ -553,16 +612,18 @@ body{
 
   <!-- 全体メモ -->
   <div class="overall-memo shokushu">
-    <h3>💭 全体の感想・気になったキーワード</h3>
-    <p>3つを調べて感じたこと、自分に合いそうな職種、もっと知りたいことを自由に書いてみよう。</p>
-    <textarea class="memo" id="memo-s-all" placeholder="例）マーケティング職は数字と創造性の両方が必要で、自分の強みと合っている気がした..."></textarea>
+    <h3>💭 あなたの感想・気づきを入力しよう</h3>
+    <p>調べて感じたこと、自分に合いそうだと思った理由、この職種のどこに惹かれたか——あなたの言葉で自由に書いてください。<br><strong style="color:var(--blue-d);">この内容がインスタント研究プロンプトに反映され、志望動機のヒントにもつながります！</strong></p>
+    <textarea class="memo" id="memo-s-all" placeholder="例）データを分析して戦略を立てる仕事が自分の性格に合っていると感じた。論理的に考えることが好きだし、結果が数字で見えるのが面白そう..."></textarea>
+    <button class="instant-btn shokushu" style="margin-top:12px;background:#1E3A8A;" onclick="jikkuriResearch('shokushu')">🔍 じっくり研究プロンプトを生成する（志望動機ヒント付き）</button>
+    <div class="copy-note" style="margin-top:6px;">1・2・3のメモ内容＋感想を踏まえた、あなただけのプロンプトが生成されます</div>
   </div>
 
   <!-- AIプロンプト -->
   <div class="prompt-section shokushu">
     <div class="prompt-title">🤖 AIプロンプト生成</div>
     <div class="prompt-sub">職種を選択すると、あなた専用の質問文が自動生成されます。コピーしてClaude.aiやGeminiに貼り付けてください。</div>
-    <div class="prompt-box" id="prompt-shokushu">← まず職種を選択してください</div>
+    <div class="prompt-box" id="prompt-shokushu">← 上の🚀インスタントまたは🔍じっくり研究ボタンを押してください</div>
     <button class="copy-btn shokushu" onclick="copyPrompt('shokushu')">📋 プロンプトをコピーする</button>
     <div class="copy-note">コピー後、AIの回答は必ず自分の言葉で咀嚼してください。<br>AIは地図、歩くのはあなたです。</div>
     <div class="ai-links">
@@ -593,6 +654,15 @@ body{
     <input class="inp" id="inp-kigyo" type="text" placeholder="例）株式会社〇〇" oninput="updatePrompt('kigyo')">
   </div>
 
+  <!-- インスタント研究 -->
+  <div class="instant-wrap kigyo">
+    <div class="instant-title">🚀 インスタント研究</div>
+    <div class="instant-note warn">⚠️ 必ず上の「企業名」を入力してからボタンを押してください！<br>すぐ使えるシンプルなプロンプトが生成されます。</div>
+    <button class="instant-btn" onclick="instantResearch('kigyo')">🚀 インスタント研究（かんたん版）</button>
+  </div>
+
+  <div class="divider">または、じっくり1つずつ調べる</div>
+
   <!-- 調査1 -->
   <div class="research-card kigyo">
     <div class="rc-header" onclick="toggleCard('k1')">
@@ -609,7 +679,7 @@ body{
         <p>設立年・従業員数・売上・事業領域を知ることで、会社の「規模感」と「強み」がわかります。面接では「うちの会社について教えてください」と聞かれることも。基本情報を押さえておくことで、会社への真剣さが伝わります。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-k1" placeholder="例）設立：1990年、従業員：約5,000名、売上：500億円。主力事業はBtoB向けシステム開発。東証プライム上場..."></textarea>
+      <textarea class="memo" id="memo-k1" placeholder="例）設立：1990年、従業員：約5,000名、売上：500億円。主力事業はBtoB向けシステム開発。東証プライム上場..." oninput="collectMemos('kigyo')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「会社のHPのトップページを5分眺めるだけで、その会社が何を大切にしているかが伝わってきます。まずそこから始めてみてください。」</p>
@@ -633,7 +703,7 @@ body{
         <p>「なぜこの会社なのか」の核心は、「この会社が社会に果たす役割に共感したから」です。業界研究で学んだ「社会的役割」と企業の事業内容をつなげることで、志望動機に深みが生まれます。「御社の〇〇事業が、○○という社会課題を解決していることに共感しました」——この一文が言えれば完璧です。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-k2" placeholder="例）主力のクラウドサービスで中小企業のDX推進を支援。特に地方の中小企業に対して低コストで導入できる点が社会貢献につながっている..."></textarea>
+      <textarea class="memo" id="memo-k2" placeholder="例）主力のクラウドサービスで中小企業のDX推進を支援。特に地方の中小企業に対して低コストで導入できる点が社会貢献につながっている..." oninput="collectMemos('kigyo')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「その会社がなくなったら、社会はどう困るか——そこから考えると、社会的役割が見えてきます。」</p>
@@ -657,7 +727,7 @@ body{
         <p>「自分はこの会社に合っているか」を確認する最重要ポイントです。求められる人物像を知ることで、自己PRと志望動機を「会社が欲しい人材」に合わせることができます。採用ページ・社員インタビュー・OB訪問で必ず確認してください。</p>
       </div>
       <div class="memo-label">📝 調べてわかったこと・気になったキーワード</div>
-      <textarea class="memo" id="memo-k3" placeholder="例）採用ページには「主体性・チャレンジ精神・誠実さ」とある。私の強みである「粘り強く問題解決する姿勢」と合致している..."></textarea>
+      <textarea class="memo" id="memo-k3" placeholder="例）採用ページには「主体性・チャレンジ精神・誠実さ」とある。私の強みである「粘り強く問題解決する姿勢」と合致している..." oninput="collectMemos('kigyo')"></textarea>
       <div class="doshi">
         <span class="doshi-label">🔥 キャリ爺のひとこと</span>
         <p>「求められる人物像を読んで『自分とは全然違う』と感じたら、それはその会社との相性を教えてくれているサインかもしれません。無理に合わせる必要はありません。」</p>
@@ -667,16 +737,18 @@ body{
 
   <!-- 全体メモ -->
   <div class="overall-memo kigyo">
-    <h3>💭 全体の感想・気になったキーワード</h3>
-    <p>3つを調べて感じたこと、「この会社に入りたい」と思った理由、まだわからないことを自由に書いてみよう。</p>
-    <textarea class="memo" id="memo-k-all" placeholder="例）事業内容と自分の興味がぴったり合った。求められる人物像も自分に近い気がする。あとはOB訪問で社風を確認したい..."></textarea>
+    <h3>💭 あなたの感想・気づきを入力しよう</h3>
+    <p>調べて感じたこと、「この会社に入りたい」と思った理由、どこに惹かれたか——あなたの言葉で自由に書いてください。<br><strong style="color:var(--brown-d);">この内容がインスタント研究プロンプトに反映され、志望動機のヒントにもつながります！</strong></p>
+    <textarea class="memo" id="memo-k-all" placeholder="例）この会社の社会課題への向き合い方に共感した。特に地方の中小企業を支援するという姿勢が、自分が大切にしている「縁の下の力持ち」という価値観と重なる..."></textarea>
+    <button class="instant-btn kigyo" style="margin-top:12px;background:var(--brown-d);" onclick="jikkuriResearch('kigyo')">🔍 じっくり研究プロンプトを生成する（志望動機ヒント付き）</button>
+    <div class="copy-note" style="margin-top:6px;">1・2・3のメモ内容＋感想を踏まえた、あなただけのプロンプトが生成されます</div>
   </div>
 
   <!-- AIプロンプト -->
   <div class="prompt-section kigyo">
     <div class="prompt-title">🤖 AIプロンプト生成</div>
     <div class="prompt-sub">企業名を入力すると、あなた専用の質問文が自動生成されます。コピーしてClaude.aiやGeminiに貼り付けてください。</div>
-    <div class="prompt-box" id="prompt-kigyo">← まず企業名を入力してください</div>
+    <div class="prompt-box" id="prompt-kigyo">← 上の🚀インスタントまたは🔍じっくり研究ボタンを押してください</div>
     <button class="copy-btn kigyo" onclick="copyPrompt('kigyo')">📋 プロンプトをコピーする</button>
     <div class="copy-note">コピー後、AIの回答は必ず自分の言葉で咀嚼してください。<br>AIは地図、歩くのはあなたです。</div>
     <div class="ai-links">
@@ -702,6 +774,232 @@ body{
 <div class="toast" id="toast">✅ コピーしました！AIに貼り付けてください</div>
 
 <script>
+// ========================
+// セレクト→テキスト入力を同期
+// ========================
+function syncInput(type) {
+  if (type === 'gyokai') {
+    const val = document.getElementById('sel-gyokai').value;
+    if (val) document.getElementById('inp-gyokai').value = '';
+  }
+  if (type === 'shokushu') {
+    const val = document.getElementById('sel-shokushu').value;
+    if (val) document.getElementById('inp-shokushu').value = '';
+  }
+}
+
+// ========================
+// インスタント研究
+// ========================
+function instantResearch(type) {
+  let target = '';
+  if (type === 'gyokai') {
+    const sel = document.getElementById('sel-gyokai').value;
+    const inp = document.getElementById('inp-gyokai').value.trim();
+    target = inp || sel;
+    if (!target) { showToast('⚠️ 業界を選択またはテキスト入力してください'); return; }
+    const memo = document.getElementById('memo-g-all').value.trim();
+    const memoSection = memo
+      ? `\n私はこの業界について調べ、以下のように感じました：\n「${memo}」\n\nこの私の気づきや感想を踏まえて、以下の4点を教えてください。`
+      : `\n以下の4点を教えてください。`;
+    document.getElementById('prompt-gyokai').textContent =
+`${target}について深掘りしたいです。
+${memoSection}
+
+1. 【業界動向と情報】
+${target}の現在の市場規模・主要企業・最新の動向を教えてください。特に2024〜2025年に注目されているトピックや技術革新があれば具体的に説明してください。
+
+2. 【社会的役割と重要性】
+${target}が社会に果たしている役割と重要性を教えてください。この業界がなくなったら社会はどう困るか、社会課題との関連性も含めて説明してください。
+
+3. 【今後の展望】
+${target}の今後5〜10年の展望を教えてください。成長が期待される分野、注目の技術・トレンド、業界の将来性について具体的に説明してください。
+
+4. 【企業選びのポイントと志望動機のヒント】${memo ? `\n私が入力した感想「${memo}」から読み取れる` : '\n'}以下の2点を提案してください。\n・この業界で企業を選ぶ際の「軸」を3つ\n・志望動機につながるキーワードと、志望動機の「一文」の例
+
+各項目について、就活生がESや面接で活用できるレベルで、具体的に説明してください。`;
+    showToast('✅ プロンプト生成完了！下のボタンでコピーしてください');
+    document.getElementById('prompt-gyokai').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  if (type === 'shokushu') {
+    const sel = document.getElementById('sel-shokushu').value;
+    const inp = document.getElementById('inp-shokushu').value.trim();
+    target = inp || sel;
+    if (!target) { showToast('⚠️ 職種を選択またはテキスト入力してください'); return; }
+    document.getElementById('prompt-shokushu').textContent =
+`${target}について、以下の3点を詳しく教えてください。
+
+1. 【職種名と仕事の中身】
+${target}の主な業務内容と一日の仕事の流れを教えてください。どんなスキルが求められ、どんな場面でやりがいを感じるか、具体的なエピソードも含めて説明してください。
+
+2. 【適性と価値観】
+${target}に向いている人の特性・価値観・性格を教えてください。どんな強みを持つ人がこの職種で活躍しやすいか、逆に向いていない人の特徴も含めて説明してください。
+
+3. 【キャリアパス】
+${target}の一般的なキャリアパスを教えてください。入社後どのように成長し、5年後・10年後にどんなポジションを目指せるか、スキルアップの機会も含めて説明してください。
+
+就活生がESや面接で「なぜこの職種か」を語れるレベルで、具体的に説明してください。`;
+    showToast('✅ プロンプト生成完了！下のボタンでコピーしてください');
+    document.getElementById('prompt-shokushu').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  if (type === 'kigyo') {
+    target = document.getElementById('inp-kigyo').value.trim();
+    if (!target) { showToast('⚠️ まず企業名を入力してください！'); return; }
+    document.getElementById('prompt-kigyo').textContent =
+`${target}について、以下の3点を詳しく教えてください。
+
+1. 【企業概要】
+${target}の設立年・従業員数・売上規模・主要事業領域・上場状況を教えてください。業界内での位置づけや競合他社との違いも含めて説明してください。
+
+2. 【主な事業内容と社会的役割】
+${target}の主力事業の内容と、それが社会にどのような価値をもたらしているかを教えてください。どんな社会課題の解決に貢献しているか、具体的な取り組み事例も含めて説明してください。
+
+3. 【求められる人物像】
+${target}が採用で重視している人材像・スキル・価値観を教えてください。企業文化・社風・働き方の特徴も含めて、どんな人がこの会社で活躍しやすいかを説明してください。
+
+就活生が面接で「なぜこの会社か」を説得力を持って語れるレベルで、具体的に説明してください。`;
+    showToast('✅ プロンプト生成完了！下のボタンでコピーしてください');
+    document.getElementById('prompt-kigyo').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+// ========================
+// メモ自動集約（1・2・3→全体感想欄）
+// ========================
+function collectMemos(type) {
+  if (type === 'gyokai') {
+    const m1 = document.getElementById('memo-g1').value.trim();
+    const m2 = document.getElementById('memo-g2').value.trim();
+    const m3 = document.getElementById('memo-g3').value.trim();
+    const parts = [];
+    if (m1) parts.push('【業界動向】' + m1);
+    if (m2) parts.push('【社会的役割】' + m2);
+    if (m3) parts.push('【今後の展望】' + m3);
+    document.getElementById('memo-g-all').value = parts.join('\n');
+  }
+  if (type === 'shokushu') {
+    const m1 = document.getElementById('memo-s1').value.trim();
+    const m2 = document.getElementById('memo-s2').value.trim();
+    const m3 = document.getElementById('memo-s3').value.trim();
+    const parts = [];
+    if (m1) parts.push('【仕事の中身】' + m1);
+    if (m2) parts.push('【適性と価値観】' + m2);
+    if (m3) parts.push('【キャリアパス】' + m3);
+    document.getElementById('memo-s-all').value = parts.join('\n');
+  }
+  if (type === 'kigyo') {
+    const m1 = document.getElementById('memo-k1').value.trim();
+    const m2 = document.getElementById('memo-k2').value.trim();
+    const m3 = document.getElementById('memo-k3').value.trim();
+    const parts = [];
+    if (m1) parts.push('【企業概要】' + m1);
+    if (m2) parts.push('【事業と社会的役割】' + m2);
+    if (m3) parts.push('【求められる人物像】' + m3);
+    document.getElementById('memo-k-all').value = parts.join('\n');
+  }
+}
+
+// ========================
+// じっくり研究プロンプト生成（志望動機ヒント付き）
+// ========================
+function jikkuriResearch(type) {
+  if (type === 'gyokai') {
+    const sel = document.getElementById('sel-gyokai').value;
+    const inp = document.getElementById('inp-gyokai').value.trim();
+    const target = inp || sel;
+    if (!target) { showToast('⚠️ 業界を選択またはテキスト入力してください'); return; }
+    const memo = document.getElementById('memo-g-all').value.trim();
+    const memoText = memo
+      ? `\n私はこの業界について調べ、以下のように感じました：\n${memo}\n\nこの気づきや感想を踏まえて、以下の4点を詳しく教えてください。`
+      : `\n以下の4点を詳しく教えてください。`;
+    document.getElementById('prompt-gyokai').textContent =
+`${target}について深掘りしたいです。
+${memoText}
+
+1. 【業界動向と情報】
+${target}の現在の市場規模・主要企業・最新の動向を教えてください。特に2024〜2025年に注目されているトピックや技術革新があれば具体的に説明してください。
+
+2. 【社会的役割と重要性】
+${target}が社会に果たしている役割と重要性を教えてください。この業界がなくなったら社会はどう困るか、社会課題との関連性も含めて説明してください。
+
+3. 【今後の展望】
+${target}の今後5〜10年の展望を教えてください。成長が期待される分野、注目の技術・トレンド、業界の将来性について具体的に説明してください。
+
+4. 【企業選びのポイントと志望動機のヒント】
+${memo ? `私の感想・気づきの内容から読み取れる` : ``}以下の2点を提案してください。
+・この業界で企業を選ぶ際の「軸」を3つ
+・志望動機につながるキーワードと、志望動機の「一文」の例
+
+各項目について、就活生がESや面接で活用できるレベルで、具体的な数字や事例を交えて説明してください。`;
+    showToast('✅ じっくり研究プロンプト生成完了！');
+    document.getElementById('prompt-gyokai').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  if (type === 'shokushu') {
+    const sel = document.getElementById('sel-shokushu').value;
+    const inp = document.getElementById('inp-shokushu').value.trim();
+    const target = inp || sel;
+    if (!target) { showToast('⚠️ 職種を選択またはテキスト入力してください'); return; }
+    const memo = document.getElementById('memo-s-all').value.trim();
+    const memoText = memo
+      ? `\n私はこの職種について調べ、以下のように感じました：\n${memo}\n\nこの気づきや感想を踏まえて、以下の4点を詳しく教えてください。`
+      : `\n以下の4点を詳しく教えてください。`;
+    document.getElementById('prompt-shokushu').textContent =
+`${target}について深掘りしたいです。
+${memoText}
+
+1. 【職種名と仕事の中身】
+${target}の主な業務内容と一日の仕事の流れを教えてください。どんなスキルが求められ、どんな場面でやりがいを感じるか、具体的なエピソードも含めて説明してください。
+
+2. 【適性と価値観】
+${target}に向いている人の特性・価値観・性格を教えてください。どんな強みを持つ人がこの職種で活躍しやすいか、逆に向いていない人の特徴も含めて説明してください。
+
+3. 【キャリアパス】
+${target}の一般的なキャリアパスを教えてください。入社後どのように成長し、5年後・10年後にどんなポジションを目指せるか、スキルアップの機会も含めて説明してください。
+
+4. 【企業選びのポイントと志望動機のヒント】
+${memo ? `私の感想・気づきの内容から読み取れる` : ``}以下の2点を提案してください。
+・この職種で活躍するために重要な「自分の強みの活かし方」を3つ
+・志望動機につながるキーワードと、「なぜこの職種か」を伝える志望動機の「一文」の例
+
+就活生がESや面接で「なぜこの職種か」を語れるレベルで、具体的に説明してください。`;
+    showToast('✅ じっくり研究プロンプト生成完了！');
+    document.getElementById('prompt-shokushu').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  if (type === 'kigyo') {
+    const target = document.getElementById('inp-kigyo').value.trim();
+    if (!target) { showToast('⚠️ まず企業名を入力してください！'); return; }
+    const memo = document.getElementById('memo-k-all').value.trim();
+    const memoText = memo
+      ? `\n私はこの企業について調べ、以下のように感じました：\n${memo}\n\nこの気づきや感想を踏まえて、以下の4点を詳しく教えてください。`
+      : `\n以下の4点を詳しく教えてください。`;
+    document.getElementById('prompt-kigyo').textContent =
+`${target}について深掘りしたいです。
+${memoText}
+
+1. 【企業概要】
+${target}の設立年・従業員数・売上規模・主要事業領域・上場状況を教えてください。業界内での位置づけや競合他社との違いも含めて説明してください。
+
+2. 【主な事業内容と社会的役割】
+${target}の主力事業の内容と、それが社会にどのような価値をもたらしているかを教えてください。どんな社会課題の解決に貢献しているか、具体的な取り組み事例も含めて説明してください。
+
+3. 【求められる人物像】
+${target}が採用で重視している人材像・スキル・価値観を教えてください。企業文化・社風・働き方の特徴も含めて、どんな人がこの会社で活躍しやすいかを説明してください。
+
+4. 【企業選びのポイントと志望動機のヒント】
+${memo ? `私の感想・気づきの内容から読み取れる` : ``}以下の2点を提案してください。
+・${target}を選ぶ「決め手となる軸」を3つ
+・志望動機につながるキーワードと、「なぜ${target}なのか」を伝える志望動機の「一文」の例
+
+就活生が面接で「なぜこの会社か」を説得力を持って語れるレベルで、具体的に説明してください。`;
+    showToast('✅ じっくり研究プロンプト生成完了！');
+    document.getElementById('prompt-kigyo').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
 // ========================
 // タブ切替
 // ========================
@@ -730,7 +1028,7 @@ function toggleCard(id) {
 // ========================
 function updatePrompt(type) {
   if (type === 'gyokai') {
-    const gyokai = document.getElementById('sel-gyokai').value;
+    const gyokai = document.getElementById('inp-gyokai').value.trim() || document.getElementById('sel-gyokai').value;
     if (!gyokai) {
       document.getElementById('prompt-gyokai').textContent = '← まず業界を選択してください';
       return;
@@ -751,11 +1049,13 @@ ${gyokai}の今後5〜10年の展望を教えてください。成長が期待�
   }
 
   if (type === 'shokushu') {
-    const shokushu = document.getElementById('sel-shokushu').value;
+    const shokushu = document.getElementById('inp-shokushu').value.trim() || document.getElementById('sel-shokushu').value;
     if (!shokushu) {
-      document.getElementById('prompt-shokushu').textContent = '← まず職種を選択してください';
+      document.getElementById('prompt-shokushu').textContent = '← 上の🚀インスタントまたは🔍じっくり研究ボタンを押してください';
       return;
     }
+    // updatePromptでは自動生成しない（ボタン押下時のみ）
+    return;
     document.getElementById('prompt-shokushu').textContent =
 `${shokushu}について、以下の3点を詳しく教えてください。
 
@@ -774,9 +1074,11 @@ ${shokushu}の一般的なキャリアパスを教えてください。入社後
   if (type === 'kigyo') {
     const kigyo = document.getElementById('inp-kigyo').value.trim();
     if (!kigyo) {
-      document.getElementById('prompt-kigyo').textContent = '← まず企業名を入力してください';
+      document.getElementById('prompt-kigyo').textContent = '← 上の🚀インスタントまたは🔍じっくり研究ボタンを押してください';
       return;
     }
+    // updatePromptでは自動生成しない（ボタン押下時のみ）
+    return;
     document.getElementById('prompt-kigyo').textContent =
 `${kigyo}について、以下の3点を詳しく教えてください。
 
